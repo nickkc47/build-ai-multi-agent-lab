@@ -61,4 +61,19 @@ describe('parseProfile', () => {
     expect(p.bioParagraphs.length).toBeGreaterThan(0);
     expect(p.tagline).toBe('');
   });
+
+  it('reads hero pool items with optional reason, skipping the note line', () => {
+    const p = parseProfile(
+      '## Hero Pool\n> note\n\n- Phantom Lancer (PL) — ภาพลวงเต็มจอ\n- Slark\n\n## Contact\n- x',
+    );
+    expect(p.heroPool).toEqual([
+      { name: 'Phantom Lancer (PL)', reason: 'ภาพลวงเต็มจอ' },
+      { name: 'Slark', reason: '' },
+    ]);
+  });
+
+  it('strips leading emoji from interests for the web', () => {
+    const p = parseProfile('## Interests\n- 🎮 Dota 2\n- 🧠 draft และ meta\n');
+    expect(p.interests).toEqual(['Dota 2', 'draft และ meta']);
+  });
 });

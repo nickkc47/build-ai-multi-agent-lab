@@ -1,14 +1,18 @@
 ---
 export const prerender = false;
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCta from '../components/ContactCta.astro';
 import { loadProfile } from '../lib/profile';
 const profile = loadProfile();
+// D9: Bio comes straight from PROFILE — the owner rewrites it (angle B), the UI never adds personal details.
 ---
-<BaseLayout title={`About · ${profile.name}`}>
-  <article class="card">
-    <h1>About</h1>
-    {profile.bioParagraphs.map((para) => <p>{para}</p>)}
-    <p>เรื่องราวเพิ่มเติม — timeline, skills และลิงก์จะอัปเดตเร็ว ๆ นี้</p>
+<BaseLayout title={`เกี่ยวกับ · ${profile.name}`} description={profile.headline}>
+  <article>
+    <p class="eyebrow">เกี่ยวกับ</p>
+    <h1>{profile.name}</h1>
+    <div class="panel">
+      {profile.bioParagraphs.map((para) => <p>{para}</p>)}
+    </div>
   </article>
+  <ContactCta />
 </BaseLayout>
-

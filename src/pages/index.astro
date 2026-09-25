@@ -3,21 +3,25 @@ export const prerender = false;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadProfile } from '../lib/profile';
 const profile = loadProfile();
+// D1 hero from PROFILE · D6 no rank section · D8 playstyle lives in the headline.
 ---
-<BaseLayout title={`${profile.name} · Home`} description={profile.headline}>
-  <section class="card">
-    <p style="margin:0;color:var(--accent);font-weight:700">Personal branding site</p>
-    <h1>{profile.name}</h1>
-    <p style="font-size:1.2rem;color:var(--text)">{profile.headline}</p>
-    {profile.tagline && <p><em>{profile.tagline}</em></p>}
-    {profile.bioParagraphs.map((para) => <p>{para}</p>)}
-    <p><strong>Audience:</strong> {profile.audience}</p>
+<BaseLayout title={`${profile.name} · หน้าแรก`} description={profile.headline}>
+  <section class="hero" aria-labelledby="hero-title">
+    <p class="eyebrow">CARRY · DOTA 2</p>
+    <h1 id="hero-title">{profile.name}</h1>
+    <p class="lead">{profile.headline}</p>
+    {profile.tagline && <p class="tagline">{profile.tagline}</p>}
+    <p class="hero-cta"><a class="btn" href="/contact">ส่งสัญญาณมา</a></p>
   </section>
-  <section class="grid">
-    <a class="card" href="/about"><h2>About</h2><p>เรื่องราวและเส้นทาง</p></a>
-    <a class="card" href="/interests"><h2>Interests</h2><p>หัวข้อที่สนใจ</p></a>
-    <a class="card" href="/contact"><h2>Contact</h2><p>ส่งข้อความถึงฉัน</p></a>
-    <a class="card" href="/guestbook"><h2>Guestbook</h2><p>ฝากคำทักทาย</p></a>
+
+  <section class="grid" aria-label="หน้าอื่น">
+    <a class="panel tile" href="/about"><h2>เกี่ยวกับ</h2><p>ทำไมถึงเล่นแบบนี้</p></a>
+    <a class="panel tile" href="/interests"><h2>ความสนใจ</h2><p>ฮีโร่ที่ถนัดและสนามที่เล่น</p></a>
+    <a class="panel tile" href="/contact"><h2>ติดต่อ</h2><p>ชวนปาร์ตี้ ชวนแข่ง หรือเรื่องงาน</p></a>
   </section>
 </BaseLayout>
 
+<style>
+  .hero { padding: 2rem 0 2.5rem; }
+  .hero-cta { margin-top: 1.5rem; }
+</style>
