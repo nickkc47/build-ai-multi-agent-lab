@@ -23,6 +23,11 @@ v1 จึงเล็กลง: Home + About มุม B + Interests (Hero Pool)
 | D8 | Proof / Hero Pool | ใช้ Hero Pool (PA signature + PL · LS · Slark · Spectre · Razor) เป็นหลักฐานบนหน้า Interests · ไม่ใช้เรื่อง "แชมป์โรงเรียน" ใน v1 · การ์ด Playstyle รวมเข้า Hero | proof ที่ไม่โยงตัวตน · ลดการ์ดซ้ำ | Devil · Brand (หลังรอบ 2) |
 | D9 | About และ Privacy | About มุม B "ปรัชญานักลอบสังหาร" · Bio เวอร์ชันเว็บ 3 ประโยค ไม่เล่า ประถม/ร้านเกม/แชมป์โรงเรียน/ที่ทำงาน · ห้ามลิงก์ Dotabuff/OpenDota/Steam | กันการต่อจิ๊กซอว์ตัวตน | Brand · Devil |
 
+### แก้ไขหลังอนุมัติ
+
+- **D5 (2026-09-25 · เจ้าของเลือก):** เกณฑ์ Lab 04 ต้องมีลิงก์ Guestbook ใน nav → คงลิงก์ "สมุดเยี่ยม" ไว้ แต่หน้าเป็น "ยังไม่เปิด" ไม่มีฟอร์มโพสต์ ไม่มี fetch · การ์ดบน Home ยังเอาออก · เปิดจริงเมื่อ API มี validation + moderation (ดู `docs/fe-be-contract-check.md`)
+- **L3/L4 ยังไม่ปิด (เจ้าของเลือก):** Lab 04 ทำ UI ด้วย PROFILE ปัจจุบันไปก่อน — Hero Pool แสดงชื่อ ไม่มีเหตุผล · About ใช้ Bio เดิม · Contact มีแค่ฟอร์ม · เติม PROFILE ภายหลังได้โดยไม่ต้องแก้โค้ด
+
 ### การแก้ `docs/PROFILE.md` ในรอบนี้
 
 - **ไม่ได้แก้** — Headline / Tagline / กติกาเสียงใน Tone อัปเดตไว้แล้วก่อนรอบนี้ และตรงกับ D1 · D3
