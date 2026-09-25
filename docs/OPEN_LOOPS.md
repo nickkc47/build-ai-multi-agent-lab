@@ -3,17 +3,19 @@
 > งานค้างที่ยังไม่ปิด · ลบแถวเมื่อเสร็จ  
 > Owner = `Claude` | `OpenCode` | `human`
 
-Last updated: 2026-09-25 16:50 +07:00
+Last updated: 2026-09-25 16:55 +07:00
 
 | ID | Task | Owner | Priority | Trigger / due | Notes |
 |---|---|---|---|---|---|
-| L11 | Contact: `aria-describedby="status"` ผูกทุกช่องกับกล่องสถานะเดียว → screen reader อ่านข้อความระดับฟอร์มซ้ำทุกช่อง · พิจารณาแยก error รายช่อง | Claude | Low | Lab 06 a11y | `docs/review-pr31.md` ข้อ 3 |
+| L12 | nav link สูง ~44px บนมือถือ (ตอนนี้ 21px · ผ่าน AA แบบ spacing exception) | Claude | Low | ตอน restyle nav | `docs/QA.md` A3 · P2 |
+| L13 | axe / Lighthouse + zoom 200% + reduced motion บน URL จริง | Claude | Low | Lab 08 | `docs/QA.md` P2 |
 | L7 | อัปเดต `src/data/heroes.ts` (GUIDE_PATCH + META บนสุด) เมื่อแพตช์ใหม่ออก · ตรวจ build/matchup ของ 7.41f กับเกมจริง | human | Low | แพตช์ถัดไป | D10 · ข้อมูล win rate ปน 7.41e/7.41f |
 
 ## ปิดแล้ว (ย่อ — ย้ายหรือลบได้เมื่อรก)
 
 | ID | Task | Closed |
 |---|---|---|
+| L11 | Contact: ลบ `aria-describedby="status"` + error บอกชื่อช่องที่ผิด + hint "กรอกครบทุกช่อง" (Lab 06 P0×2 + P1) | 2026-09-25 |
 | L10 | Contact: ข้อความ 413 / 429 เฉพาะในฟอร์ม (branch `fix/contact-429-413` stacked บน #32) · e2e ยังต้องตั้ง `RATE_LIMIT_MAX` ใน Lab 06 | 2026-09-25 |
 | L6 | Guestbook: approve step (`approveGuestbook` + `scripts/guestbook-approve.mjs`) + rate limit POST · ตัดสินให้ POST ยังรับเป็น `pending` | 2026-09-25 |
 | L9 | `/api/contact` rate limit 429 · body ≤ 8 KB → 413 · 201 ตอบ `{id, created_at}` (B2) · `/api/interests` try/catch | 2026-09-25 |
