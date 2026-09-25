@@ -3,24 +3,25 @@
 > อ่านทุก session · **สั้น** · single-writer ต่อรอบ  
 > ดู [`COURSE.md`](../COURSE.md) ชั้น State (Hot)
 
-Last updated: 2026-09-25 12:30 +07:00  
-Updated by: Claude
+Last updated: 2026-09-25 14:57 +07:00  
+Updated by: OpenCode
 
 ## Current goal
 
-- Lab 05 Backend (OpenCode) — implement Contact/Guestbook API ตาม handoff `docs/handoffs/04-claude-to-opencode.md`
+- Lab 05 done → merge PR #29 แล้วไป Lab 05b (swarm to green) หรือ Lab 06 (Playwright)
 
 ## Done
 
 - Lab 00–01: init · agents · hot state · `docs/PROFILE.md` (valentine · Dota 2 Carry · นามแฝงเท่านั้น)
 - Lab 02: `docs/DEBATE.md` (Agent Teams 2 รอบ) → `docs/DECISIONS.md` D1–D9 · L2 parser ปิดแล้ว
 - Lab 03: issues #21–#26 จาก D-ids (MCP 5 · `gh` 1) · `## Lab 03 — MCP vs gh` ใน DECISIONS
-- Lab 04: UI ทุกหน้า (ธีมดำ/แดงเบอร์กันดี · nav ไทย · Hero Pool · Contact microcopy · Guestbook "ยังไม่เปิด") บน branch `lab-04-frontend` · `docs/fe-be-contract-check.md` จาก OpenCode · `npm test` 11/11 · build · e2e 2/2 (2026-09-25)
+- Lab 04: UI ทุกหน้า (ธีมดำ/แดงเบอร์กันดี · nav ไทย · Hero Pool · Contact microcopy · Guestbook "ยังไม่เปิด") · `docs/fe-be-contract-check.md` จาก OpenCode · PR #27 merge แล้ว (2026-09-25)
+- D10 ไกด์ฮีโร่ + หน้าเมตา บน branch `feat/hero-guides` · PR #28 merge แล้ว · `npm test` 16/16 (2026-09-25)
+- Lab 05: API ทำงานจริง — `insertContact`/`listGuestbook`/`insertGuestbook` + `src/lib/api.ts` (error คงที่ 400/500 · ไม่ส่ง `err.message`) · guestbook คอลัมน์ `status` pending/approved + blocklist (D5) · `test:labs` 2/2 · `npm test` 17/17 · build · manual curl ครบ · `docs/be-fe-integration-check.md` จาก Claude · PR #29 (2026-09-25)
 
 ## In progress
 
-- PR Lab 04 (#27) รอ review/merge
-- D10 ไกด์ฮีโร่ + หน้าเมตา บน branch `feat/hero-guides` (ต่อจาก `lab-04-frontend`) · `npm test` 16/16 · build · e2e 2/2
+- PR Lab 05 (#29) รอ review/merge
 
 ## Blocked
 
@@ -28,13 +29,14 @@ Updated by: Claude
 
 ## Next actions
 
-1. Merge PR Lab 04 → เปิด OpenCode ทำ Lab 05 ตาม handoff (writer STATUS/OPEN_LOOPS รอบถัดไป = OpenCode)
+1. Merge PR #29 → Lab 05b (`labs/lab-05b-swarm-to-green`) หรือ Lab 06 Playwright
 2. L3 / L4 — เจ้าของเติม PROFILE (เหตุผล Hero Pool · ช่องทางติดต่อ · Bio มุม B) + ตอบคำถาม privacy · ไม่ต้องแก้โค้ด
+3. L8 — รอบ frontend: แยกข้อความ 500 · เก็บ branch 501 (ตาม `docs/be-fe-integration-check.md`)
 
 ## Files changed in latest session
 
-- `src/layouts/BaseLayout.astro` · `src/components/ContactCta.astro` · `src/pages/*.astro` · `src/lib/profile.ts` · `tests/profile.test.ts`
-- `docs/DECISIONS.md` · `docs/fe-be-contract-check.md` · `docs/handoffs/04-claude-to-opencode.md` · `docs/STATUS.md` · `docs/OPEN_LOOPS.md`
+- `src/lib/db.ts` · `src/lib/api.ts` (new) · `src/pages/api/{contact,guestbook}.ts`
+- `docs/be-fe-integration-check.md` (Claude เขียน · call ข้าม harness) · `docs/STATUS.md` · `docs/OPEN_LOOPS.md`
 
 ## Notes
 
