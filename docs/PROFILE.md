@@ -24,6 +24,15 @@ Carry สาย Phantom Assassin · กำลังไต่สู่ Immortal
 - 🧠 การวิเคราะห์เกม, draft และ meta — อ่านเกมให้ขาดก่อนลงเลน
 - 🏆 การไต่แรงค์สู่ Immortal — เป้าหมายที่กำลังไล่ล่า
 
+## Hero Pool
+> ฮีโร่ประจำตัว (signature) = Phantom Assassin · pool Carry ด้านล่าง — เหตุผลรายตัว: รอเจ้าของเติม
+
+- Phantom Lancer (PL)
+- Lifestealer (LS)
+- Slark
+- Spectre
+- Razor
+
 ## Contact
 - email: demo@example.com
 - github: ไม่เปิดเผย
