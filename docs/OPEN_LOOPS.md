@@ -3,18 +3,19 @@
 > งานค้างที่ยังไม่ปิด · ลบแถวเมื่อเสร็จ  
 > Owner = `Claude` | `OpenCode` | `human`
 
-Last updated: 2026-09-25 16:00 +07:00
+Last updated: 2026-09-25 16:14 +07:00
 
 | ID | Task | Owner | Priority | Trigger / due | Notes |
 |---|---|---|---|---|---|
-| L6 | Guestbook: ขั้น approve (pending → approved · script/CLI ภายใน ไม่ใช่ route สาธารณะ) + rate limit ก่อนเปิดฟอร์มบนเว็บ — ตอนนี้ GET ตอบ `[]` เสมอเพราะยังไม่มีขั้นนี้ | OpenCode | Medium | ก่อนเปิด Guestbook | D5 · schema `status` + blocklist มีแล้ว (Lab 05) · UI ยังปิด |
 | L7 | อัปเดต `src/data/heroes.ts` (GUIDE_PATCH + META บนสุด) เมื่อแพตช์ใหม่ออก · ตรวจ build/matchup ของ 7.41f กับเกมจริง | human | Low | แพตช์ถัดไป | D10 · ข้อมูล win rate ปน 7.41e/7.41f |
-| L9 | `/api/contact`: rate limit / กันสแปม + จำกัดขนาด request body (เช่นเช็ค `content-length` ≤ 8 KB ก่อน parse) · (เลือก) 201 ส่งแค่ `{id, created_at}` (B2) · `/api/interests` ใส่ try/catch → `errorResponse` | OpenCode | Medium | ก่อน ship (Lab 08) | review PR #29 · Devil R5 |
+| L10 | รอบ frontend: ข้อความ 429 ("ส่งถี่เกินไป") / 413 เฉพาะของตัวเองในฟอร์ม Contact (ตอนนี้ตก branch "อื่น ๆ") · e2e ตั้ง `RATE_LIMIT_MAX` กันชนเพดาน 5/10min | Claude | Medium | รอบ frontend / Lab 06 | สัญญาใหม่ `docs/handoffs/05c-opencode-to-claude.md` |
 
 ## ปิดแล้ว (ย่อ — ย้ายหรือลบได้เมื่อรก)
 
 | ID | Task | Closed |
 |---|---|---|
+| L6 | Guestbook: approve step (`approveGuestbook` + `scripts/guestbook-approve.mjs`) + rate limit POST · ตัดสินให้ POST ยังรับเป็น `pending` | 2026-09-25 |
+| L9 | `/api/contact` rate limit 429 · body ≤ 8 KB → 413 · 201 ตอบ `{id, created_at}` (B2) · `/api/interests` try/catch | 2026-09-25 |
 | L3 | PROFILE: Bio มุม B · Interests · Contact = ฟอร์ม · เหตุผลรายฮีโร่ = ไม่ใช้ (เจ้าของตัดสิน · ไกด์ D10 แทน) | 2026-09-25 |
 | L4 | privacy: "valentine" ใช้บนเว็บเท่านั้น · repo/author ไม่โยงชื่อจริง | 2026-09-25 |
 | — | L3 บางส่วน: Bio มุม B (อนุมัติแล้ว) · Interests ข้อ 1 · Contact = ฟอร์มอย่างเดียว | 2026-09-25 |
