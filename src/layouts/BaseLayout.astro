@@ -9,11 +9,13 @@ const profile = loadProfile();
 const { title = profile.name, description = profile.headline } = Astro.props;
 const path = Astro.url.pathname;
 // D4: nav is plain Thai, contact sits last and stands out. Guestbook stays linked
-// but closed until moderation exists (D5 amendment).
+// but closed until moderation exists (D5 amendment). Meta page added by owner request (D10);
+// hero guide pages highlight "ความสนใจ".
 const links = [
   { href: '/', label: 'หน้าแรก', active: path === '/' },
   { href: '/about', label: 'เกี่ยวกับ', active: path.startsWith('/about') },
-  { href: '/interests', label: 'ความสนใจ', active: path.startsWith('/interests') },
+  { href: '/interests', label: 'ความสนใจ', active: path.startsWith('/interests') || path.startsWith('/heroes') },
+  { href: '/meta', label: 'เมตา', active: path.startsWith('/meta') },
   { href: '/guestbook', label: 'สมุดเยี่ยม', active: path.startsWith('/guestbook') },
 ];
 ---

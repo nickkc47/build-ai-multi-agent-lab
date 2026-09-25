@@ -1,0 +1,47 @@
+---
+export const prerender = false;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCta from '../components/ContactCta.astro';
+import { META, findHero, heroSlug } from '../data/heroes';
+import { loadProfile } from '../lib/profile';
+// D10: recommended carry picks per patch, newest first. Add a new patch at the top of META.
+const profile = loadProfile();
+---
+<BaseLayout title={`เมตาแพตช์ · ${profile.name}`} description="ฮีโร่ Carry ที่แนะนำในแต่ละแพตช์">
+  <p class="eyebrow">เมตา</p>
+  <h1>Carry ที่แนะนำ</h1>
+  <p>คัดจากอัตราชนะและความนิยมในสถิติสาธารณะของแต่ละแพตช์ · แพตช์ล่าสุดอยู่บนสุด · เมตาเปลี่ยนได้ทุกแพตช์</p>
+
+  {META.map((m, i) => (
+    <section class="panel" aria-labelledby={`patch-${i}`}>
+      <h2 id={`patch-${i}`}>แพตช์ {m.patch}{i === 0 && <span class="badge">ปัจจุบัน</span>}</h2>
+      <p class="date">{m.date}</p>
+      <p>{m.summary}</p>
+      <ol class="picks">
+        {m.picks.map((p) => {
+          const guide = findHero(heroSlug(p.hero));
+          return (
+            <li>
+              <strong>{guide ? <a href={`/heroes/${guide.slug}`}>{p.hero}</a> : p.hero}</strong>
+              <span>{p.why}</span>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  ))}
+
+  <ContactCta />
+</BaseLayout>
+
+<style>
+  .badge {
+    display: inline-block; margin-left: 0.6rem; padding: 0 0.5rem; font-size: 0.8rem; vertical-align: middle;
+    border: 1px solid var(--color-accent); color: var(--color-accent); border-radius: var(--radius);
+  }
+  .date { font-size: 0.875rem; margin-top: 0; }
+  .picks { padding-left: 1.25rem; margin: 0; }
+  .picks li { padding: 0.35rem 0; }
+  .picks strong { color: var(--color-text); margin-right: 0.5rem; }
+  .picks span { font-size: 0.95rem; }
+</style>

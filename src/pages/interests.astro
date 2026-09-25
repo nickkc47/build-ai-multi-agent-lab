@@ -3,8 +3,13 @@ export const prerender = false;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactCta from '../components/ContactCta.astro';
 import { loadProfile } from '../lib/profile';
+import { HEROES, META, findHero, heroSlug } from '../data/heroes';
 const profile = loadProfile();
-// D8: the hero pool is the proof. Reasons appear only once the owner writes them in PROFILE.
+// D8: the hero pool is the proof. The owner's own reasons (PROFILE) show when written;
+// D10: each hero links to its guide page.
+const signature = HEROES.find((h) => h.signature);
+const pool = profile.heroPool.map((h) => ({ ...h, guide: findHero(heroSlug(h.name)) }));
+const currentMeta = META[0];
 ---
 <BaseLayout title={`ความสนใจ · ${profile.name}`} description={profile.headline}>
   <p class="eyebrow">ความสนใจ</p>
@@ -17,17 +22,42 @@ const profile = loadProfile();
     </ul>
   </section>
 
-  {profile.heroPool.length > 0 && (
-    <section class="panel" aria-labelledby="pool-title">
-      <h2 id="pool-title">ฮีโร่ที่ถนัด</h2>
-      <ul class="pool">
-        {profile.heroPool.map((hero) => (
-          <li>
-            <span class="hero-name">{hero.name}</span>
-            {hero.reason && <span class="hero-reason">{hero.reason}</span>}
-          </li>
-        ))}
-      </ul>
+  <section class="panel" aria-labelledby="pool-title">
+    <h2 id="pool-title">ฮีโร่ที่ถนัด</h2>
+    <p>เลือกฮีโร่เพื่อดูสไตล์การเล่น ไอเท็ม ทางชนะ ทางแพ้ และจังหวะเกม</p>
+    <ul class="pool">
+      {signature && (
+        <li class="signature">
+          <a href={`/heroes/${signature.slug}`}>
+            <span class="hero-tag">ประจำตัว</span>
+            <span class="hero-name">{signature.name}</span>
+            <span class="hero-reason">{signature.role}</span>
+          </a>
+        </li>
+      )}
+      {pool.map((hero) => (
+        <li>
+          {hero.guide ? (
+            <a href={`/heroes/${hero.guide.slug}`}>
+              <span class="hero-name">{hero.name}</span>
+              <span class="hero-reason">{hero.reason || hero.guide.role}</span>
+            </a>
+          ) : (
+            <span class="hero-card">
+              <span class="hero-name">{hero.name}</span>
+              {hero.reason && <span class="hero-reason">{hero.reason}</span>}
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {currentMeta && (
+    <section class="panel" aria-labelledby="meta-title">
+      <h2 id="meta-title">เมตาแพตช์ {currentMeta.patch}</h2>
+      <p>{currentMeta.summary}</p>
+      <p><a href="/meta">ดู Carry ที่แนะนำทุกแพตช์</a></p>
     </section>
   )}
 
@@ -35,8 +65,14 @@ const profile = loadProfile();
 </BaseLayout>
 
 <style>
-  .pool { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
-  .pool li { border: 1px solid var(--color-border); border-radius: var(--radius); padding: 0.6rem 0.8rem; }
+  .pool { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+  .pool a, .hero-card {
+    display: block; height: 100%; text-decoration: none; color: inherit;
+    border: 1px solid var(--color-border); border-radius: var(--radius); padding: 0.7rem 0.85rem;
+  }
+  .pool a:hover { border-color: var(--color-accent); }
+  .signature a { border-color: var(--color-burgundy); background: color-mix(in srgb, var(--color-burgundy-deep) 35%, transparent); }
+  .hero-tag { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-accent); }
   .hero-name { display: block; color: var(--color-text); font-weight: 700; }
-  .hero-reason { display: block; font-size: 0.9rem; }
+  .hero-reason { display: block; font-size: 0.875rem; color: var(--color-muted); }
 </style>

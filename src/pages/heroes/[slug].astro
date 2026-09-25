@@ -1,0 +1,90 @@
+---
+export const prerender = false;
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactCta from '../../components/ContactCta.astro';
+import { findHero, heroImage, GUIDE_PATCH } from '../../data/heroes';
+import { loadProfile } from '../../lib/profile';
+
+// D10: hero guide pages — general game knowledge for the current patch, not personal data.
+const hero = findHero(Astro.params.slug ?? '');
+if (!hero) return new Response(null, { status: 404 });
+const profile = loadProfile();
+const title = hero.abbr ? `${hero.name} (${hero.abbr})` : hero.name;
+---
+<BaseLayout title={`${hero.name} · ${profile.name}`} description={`${hero.name} — สไตล์การเล่น ไอเท็ม ทางชนะ ทางแพ้ และจังหวะเกม`}>
+  <div class="hero-head">
+    <img class="portrait" src={heroImage(hero.slug)} alt={`ภาพฮีโร่ ${hero.name}`} width="256" height="144" />
+    <div>
+      <p class="eyebrow">{hero.signature ? 'ฮีโร่ประจำตัว' : 'ฮีโร่ที่ถนัด'}</p>
+      <h1>{title}</h1>
+      <p class="lead">{hero.role}</p>
+      <p class="meta-line">{hero.attribute} · {hero.attack} · แนวทางทั่วไปอิงแพตช์ {GUIDE_PATCH} · ปรับตามเกมจริงเสมอ</p>
+    </div>
+  </div>
+
+  <section class="panel" aria-labelledby="style-title">
+    <h2 id="style-title">สไตล์การเล่น</h2>
+    <p>{hero.playstyle}</p>
+  </section>
+
+  <section class="panel" aria-labelledby="items-title">
+    <h2 id="items-title">ไอเท็มที่ควรออก</h2>
+    <div class="cols">
+      <div>
+        <h3>ช่วงต้น</h3>
+        <ul class="plain">{hero.items.early.map((i) => <li>{i}</li>)}</ul>
+      </div>
+      <div>
+        <h3>แกนหลัก</h3>
+        <ol class="plain">{hero.items.core.map((i) => <li>{i}</li>)}</ol>
+      </div>
+      <div>
+        <h3>ตามสถานการณ์</h3>
+        <ul class="plain">{hero.items.situational.map((i) => <li>{i}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="cols two">
+    <section class="panel" aria-labelledby="strong-title">
+      <h2 id="strong-title">ชนะทาง</h2>
+      <ul class="matchups">
+        {hero.strongAgainst.map((m) => <li><strong>{m.hero}</strong><span>{m.why}</span></li>)}
+      </ul>
+    </section>
+    <section class="panel" aria-labelledby="weak-title">
+      <h2 id="weak-title">แพ้ทาง</h2>
+      <ul class="matchups">
+        {hero.weakAgainst.map((m) => <li><strong>{m.hero}</strong><span>{m.why}</span></li>)}
+      </ul>
+    </section>
+  </div>
+
+  <section class="panel" aria-labelledby="timing-title">
+    <h2 id="timing-title">จังหวะการเล่น</h2>
+    <ul class="plain">{hero.timings.map((t) => <li>{t}</li>)}</ul>
+  </section>
+
+  <p><a href="/interests">กลับไปหน้าความสนใจ</a> · <a href="/meta">ดูเมตาแพตช์</a></p>
+  <ContactCta />
+</BaseLayout>
+
+<style>
+  .hero-head { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 1.5rem; }
+  .portrait {
+    width: 256px; max-width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover;
+    border: 1px solid var(--color-burgundy); border-radius: var(--radius);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-burgundy-deep) 45%, transparent);
+  }
+  .hero-head h1 { margin-bottom: 0.25rem; }
+  .meta-line { font-size: 0.9rem; margin-top: 0; }
+  h3 { font-size: 1rem; color: var(--color-text); margin-top: 0.5rem; }
+  .cols { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .cols.two { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .cols.two .panel { margin: 0; }
+  .matchups { list-style: none; padding: 0; margin: 0; }
+  .matchups li { padding: 0.4rem 0; border-bottom: 1px solid var(--color-border); }
+  .matchups li:last-child { border-bottom: 0; }
+  .matchups strong { display: block; color: var(--color-text); }
+  .matchups span { font-size: 0.9rem; }
+</style>

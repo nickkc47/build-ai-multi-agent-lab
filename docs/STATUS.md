@@ -19,7 +19,8 @@ Updated by: Claude
 
 ## In progress
 
-- PR Lab 04 รอ review/merge
+- PR Lab 04 (#27) รอ review/merge
+- D10 ไกด์ฮีโร่ + หน้าเมตา บน branch `feat/hero-guides` (ต่อจาก `lab-04-frontend`) · `npm test` 16/16 · build · e2e 2/2
 
 ## Blocked
 
