@@ -83,8 +83,13 @@ const profile = loadProfile();
         fields.forEach((f) => f.setAttribute('aria-invalid', 'false'));
       } else if (res.status === 400) {
         say('ข้อมูลไม่ครบหรือรูปแบบอีเมลไม่ถูกต้อง ลองตรวจอีกครั้ง');
+      } else if (res.status === 413) {
+        say('ข้อความยาวเกินไป ลองตัดให้สั้นลงแล้วส่งใหม่');
+      } else if (res.status === 429) {
+        // Server limit: 5 sends per 10 minutes per IP.
+        say('ส่งข้อความถี่เกินไป รอสักครู่แล้วลองใหม่ ข้อความยังอยู่ในฟอร์ม');
       } else if (res.status >= 500) {
-        // API contract: 201 / 400 / 500 (no 501). Message stays in the form, so resending is one click.
+        // API contract: 201 / 400 / 413 / 429 / 500 (no 501). Message stays in the form, so resending is one click.
         say('ระบบขัดข้องชั่วคราว ข้อความยังไม่ถูกส่ง ลองใหม่อีกครั้งภายหลัง');
       } else {
         say('ส่งไม่สำเร็จ ลองอีกครั้ง');
