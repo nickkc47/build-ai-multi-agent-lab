@@ -25,7 +25,7 @@ Carry สาย Phantom Assassin · กำลังไต่สู่ Immortal
 - 🏆 การไต่แรงค์สู่ Immortal — เป้าหมายที่กำลังไล่ล่า
 
 ## Hero Pool
-> ฮีโร่ประจำตัว (signature) = Phantom Assassin · pool Carry ด้านล่าง — เหตุผลรายตัว: รอเจ้าของเติม
+> ฮีโร่ประจำตัว (signature) = Phantom Assassin · pool Carry ด้านล่าง — รายละเอียดแต่ละตัวอยู่ในหน้าไกด์ (`src/data/heroes.ts`)
 
 - Phantom Lancer (PL)
 - Lifestealer (LS)

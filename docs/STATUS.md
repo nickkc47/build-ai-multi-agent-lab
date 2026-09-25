@@ -33,8 +33,7 @@ Updated by: Claude
 ## Next actions
 
 1. Merge PR Lab 05b → Lab 06 Playwright
-2. L3 — เหลือเหตุผลรายฮีโร่ใน Hero Pool (Bio · Contact · privacy ปิดแล้ว)
-3. L6 / L9 — backend (OpenCode): guestbook approve + rate limit · contact rate limit + body size · `/api/interests` try/catch
+2. L6 / L9 — backend (OpenCode ตาม `docs/handoffs/05b-claude-to-opencode.md`): guestbook approve + rate limit · contact rate limit + body size · `/api/interests` try/catch
 
 ## Files changed in latest session
 
