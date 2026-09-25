@@ -7,8 +7,7 @@ Last updated: 2026-09-25 16:00 +07:00
 
 | ID | Task | Owner | Priority | Trigger / due | Notes |
 |---|---|---|---|---|---|
-| L3 | เติม PROFILE: เหตุผล 1 บรรทัดต่อฮีโร่ใน `## Hero Pool` (ชื่อ 5 ตัวใส่แล้ว) · ยืนยันช่องทางติดต่อนามแฝง (หรือฟอร์มอย่างเดียว) + ลบบรรทัด Contact ที่ว่าง · Bio เวอร์ชันเว็บมุม B ไม่โยงตัวตน (ย่อหน้า 1 ประถม/ร้านเกม/แชมป์โรงเรียน · ย่อหน้า 3 ทำงาน) · Interests ข้อ 1 ตัด "ตั้งแต่ประถม" | human | High | ก่อน Lab 04 | ดู DECISIONS D7 · D8 · D9 |
-| L4 | ตอบคำถาม privacy: "valentine" ซ้ำชื่อในเกม/Discord ไหม · URL / repo / git author มีชื่อจริงไหม | human | High | ก่อน Lab 04 | DEBATE › Devil's Advocate ข้อ 1–2 |
+| L3 | เติมเหตุผล 1 บรรทัดต่อฮีโร่ใน `## Hero Pool` (รูปแบบ `- ชื่อ — เหตุผล`) · ส่วนอื่นของ L3 ปิดแล้ว | human | Low | เมื่อสะดวก | D8 · การ์ดหน้าความสนใจแสดงเหตุผลแทน role อัตโนมัติ |
 | L6 | Guestbook: ขั้น approve (pending → approved · script/CLI ภายใน ไม่ใช่ route สาธารณะ) + rate limit ก่อนเปิดฟอร์มบนเว็บ — ตอนนี้ GET ตอบ `[]` เสมอเพราะยังไม่มีขั้นนี้ | OpenCode | Medium | ก่อนเปิด Guestbook | D5 · schema `status` + blocklist มีแล้ว (Lab 05) · UI ยังปิด |
 | L7 | อัปเดต `src/data/heroes.ts` (GUIDE_PATCH + META บนสุด) เมื่อแพตช์ใหม่ออก · ตรวจ build/matchup ของ 7.41f กับเกมจริง | human | Low | แพตช์ถัดไป | D10 · ข้อมูล win rate ปน 7.41e/7.41f |
 | L9 | `/api/contact`: rate limit / กันสแปม + จำกัดขนาด request body (เช่นเช็ค `content-length` ≤ 8 KB ก่อน parse) · (เลือก) 201 ส่งแค่ `{id, created_at}` (B2) · `/api/interests` ใส่ try/catch → `errorResponse` | OpenCode | Medium | ก่อน ship (Lab 08) | review PR #29 · Devil R5 |
@@ -17,6 +16,8 @@ Last updated: 2026-09-25 16:00 +07:00
 
 | ID | Task | Closed |
 |---|---|---|
+| L4 | privacy: "valentine" ใช้บนเว็บเท่านั้น · repo/author ไม่โยงชื่อจริง | 2026-09-25 |
+| — | L3 บางส่วน: Bio มุม B (อนุมัติแล้ว) · Interests ข้อ 1 · Contact = ฟอร์มอย่างเดียว | 2026-09-25 |
 | — | Lab 05b swarm 8/20 turns · a11y 8 ข้อ + 404 + แหล่งข้อมูล D10 (`docs/SWARM.md`) | 2026-09-25 |
 | L8 | Contact: แยกข้อความ 5xx (F1) · ลบ branch 501 (F2) | 2026-09-25 |
 | L5 | Lab 05: `insertContact` / guestbook ใน `db.ts` · validation → 400 · runtime → 500 · error คงที่ · `test:labs` เขียว (PR #29) | 2026-09-25 |
