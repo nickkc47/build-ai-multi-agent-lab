@@ -11,6 +11,7 @@ Last updated: 2026-09-25 +07:00
 | L4 | ตอบคำถาม privacy: "valentine" ซ้ำชื่อในเกม/Discord ไหม · URL / repo / git author มีชื่อจริงไหม | human | High | ก่อน Lab 04 | DEBATE › Devil's Advocate ข้อ 1–2 |
 | L5 | Lab 05: `insertContact` / guestbook ใน `db.ts` · validation → 400 · runtime → 500 · error คงที่ (ไม่ส่ง `err.message`) · `test:labs` เขียว | OpenCode | High | Lab 05 | handoff `04-claude-to-opencode.md` · `fe-be-contract-check.md` |
 | L6 | Guestbook moderation (pending/approved หรือ blocklist) ก่อนเปิดฟอร์มบนเว็บ | OpenCode | Medium | ก่อนเปิด Guestbook | D5 แก้ไข · UI ยังปิด |
+| L7 | อัปเดต `src/data/heroes.ts` (GUIDE_PATCH + META บนสุด) เมื่อแพตช์ใหม่ออก · ตรวจ build/matchup ของ 7.41f กับเกมจริง | human | Low | แพตช์ถัดไป | D10 · ข้อมูล win rate ปน 7.41e/7.41f |
 
 ## ปิดแล้ว (ย่อ — ย้ายหรือลบได้เมื่อรก)
 
