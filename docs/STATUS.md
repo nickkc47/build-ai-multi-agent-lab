@@ -8,30 +8,31 @@ Updated by: Claude
 
 ## Current goal
 
-- ปิด Lab 00 ให้ครบ (เหลือ commit) → ต่อด้วย Lab 02 Debate
+- ปิดเกณฑ์พร้อม Frontend ใน `docs/DECISIONS.md` → เริ่ม Lab 04
 
 ## Done
 
-- Lab 00: `npm install` · superpowers (project) · `opencode.json` · `/init` ทั้ง Claude + OpenCode · frontend agent-memory ผ่าน · C5 OpenCode resume ผ่าน · C6 consistency ผ่าน (2026-09-25)
-- Lab 01: สัมภาษณ์ครบ 8 ข้อ และเขียน `docs/PROFILE.md` (Nick kc · Dota 2 Carry · ธีมดำ + แดงเบอร์กันดี · ใช้นามแฝงเท่านั้น)
+- Lab 00: init · agents · hot state · public-site-safe (commit แล้ว)
+- Lab 01: `docs/PROFILE.md` (valentine · Dota 2 Carry · ธีมดำ + แดงเบอร์กันดี · นามแฝงเท่านั้น) + Brainstorm (proposed)
+- Lab 02: `docs/DEBATE.md` (Brand · UX · Devil) → `docs/DECISIONS.md` D1–D9 · แก้ PROFILE: Headline ใหม่ · เพิ่ม `## Tagline` · กติกาเสียงใน Tone (2026-09-25)
 
 ## In progress
 
-- Lab 00: commit
+- —
 
 ## Blocked
 
-- —
+- Lab 04 รอเกณฑ์พร้อม Frontend (DECISIONS) — L2 · L3 · L4 ใน OPEN_LOOPS
 
 ## Next actions
 
-1. Lab 02 Debate — ใช้ `docs/PROFILE.md` เป็น input
-2. L2 — แก้ parser `profile.ts` + แยกย่อหน้า Bio (ยังไม่ได้ทำ — ดู OPEN_LOOPS)
-3. Lab 04 — ออกแบบ UI ธีมดำ + แดงเบอร์กันดีตาม PROFILE
+1. L2 — แก้ parser `profile.ts` ให้อ่านทุกบรรทัด + รองรับ `## Tagline`
+2. L3 / L4 — เจ้าของเติม PROFILE (Hero Pool · ช่องทางติดต่อ · Bio มุม B) + ตอบคำถาม privacy
+3. Lab 03 Issues → Lab 04 UI ตาม D3–D8
 
 ## Files changed in latest session
 
-- `CLAUDE.md` · `AGENTS.md` · `.claude/settings.json` · `opencode.json` · `.claude/agent-memory/frontend/` · `docs/STATUS.md` · `docs/OPEN_LOOPS.md`
+- `docs/DEBATE.md` · `docs/DECISIONS.md` · `docs/PROFILE.md` · `docs/STATUS.md` · `docs/OPEN_LOOPS.md`
 
 ## Notes
 
