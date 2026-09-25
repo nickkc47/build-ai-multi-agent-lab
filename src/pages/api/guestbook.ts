@@ -1,39 +1,38 @@
 import type { APIRoute } from 'astro';
 import { insertGuestbook, listGuestbook } from '../../lib/db';
+import { errorResponse, json } from '../../lib/api';
 
 export const prerender = false;
 
+/**
+ * GET /api/guestbook — approved entries only (D5: moderation before anything
+ * is public). Pending rows are never exposed here.
+ */
 export const GET: APIRoute = async () => {
   try {
-    const rows = listGuestbook();
-    return new Response(JSON.stringify({ entries: rows }), {
-      status: 200,
-      headers: { 'content-type': 'application/json' },
-    });
+    const rows = listGuestbook('approved');
+    return json({ entries: rows }, 200);
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'error';
-    const status = message.startsWith('NOT_IMPLEMENTED') ? 501 : 500;
-    return new Response(JSON.stringify({ error: message }), {
-      status,
-      headers: { 'content-type': 'application/json' },
-    });
+    return errorResponse(err, 'guestbook');
   }
 };
 
+/**
+ * POST /api/guestbook — validates (name ≤80, message ≤500, no links/markup)
+ * and stores as `pending`; 201 on accept · 400 invalid · 500 server error.
+ * The guestbook page stays closed until an approval flow ships (D5 / L6).
+ */
 export const POST: APIRoute = async ({ request }) => {
+  let body: unknown;
   try {
-    const body = await request.json();
-    const row = insertGuestbook(body);
-    return new Response(JSON.stringify(row), {
-      status: 201,
-      headers: { 'content-type': 'application/json' },
-    });
+    body = await request.json();
+  } catch {
+    return json({ error: 'invalid json' }, 400);
+  }
+  try {
+    const row = insertGuestbook(body as Parameters<typeof insertGuestbook>[0]);
+    return json(row, 201);
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'error';
-    const status = message.startsWith('NOT_IMPLEMENTED') ? 501 : 400;
-    return new Response(JSON.stringify({ error: message }), {
-      status,
-      headers: { 'content-type': 'application/json' },
-    });
+    return errorResponse(err, 'guestbook');
   }
 };
