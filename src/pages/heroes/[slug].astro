@@ -7,7 +7,7 @@ import { loadProfile } from '../../lib/profile';
 
 // D10: hero guide pages — general game knowledge for the current patch, not personal data.
 const hero = findHero(Astro.params.slug ?? '');
-if (!hero) return new Response(null, { status: 404 });
+if (!hero) return Astro.rewrite('/404');
 const profile = loadProfile();
 const title = hero.abbr ? `${hero.name} (${hero.abbr})` : hero.name;
 ---
@@ -65,6 +65,7 @@ const title = hero.abbr ? `${hero.name} (${hero.abbr})` : hero.name;
     <ul class="plain">{hero.timings.map((t) => <li>{t}</li>)}</ul>
   </section>
 
+  <p class="source">แหล่งข้อมูล: <a href="https://www.dota2.com/patches">patch notes ทางการ</a> · สถิติสาธารณะจาก OpenDota และ meta report</p>
   <p><a href="/interests">กลับไปหน้าความสนใจ</a> · <a href="/meta">ดูเมตาแพตช์</a></p>
   <ContactCta />
 </BaseLayout>
@@ -77,6 +78,7 @@ const title = hero.abbr ? `${hero.name} (${hero.abbr})` : hero.name;
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-burgundy-deep) 45%, transparent);
   }
   .hero-head h1 { margin-bottom: 0.25rem; }
+  .source { font-size: 0.875rem; }
   .meta-line { font-size: 0.9rem; margin-top: 0; }
   h3 { font-size: 1rem; color: var(--color-text); margin-top: 0.5rem; }
   .cols { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
