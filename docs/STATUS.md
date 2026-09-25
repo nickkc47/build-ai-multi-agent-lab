@@ -14,7 +14,8 @@ Updated by: Claude
 
 - Lab 00: init · agents · hot state · public-site-safe (commit แล้ว)
 - Lab 01: `docs/PROFILE.md` (valentine · Dota 2 Carry · ธีมดำ + แดงเบอร์กันดี · นามแฝงเท่านั้น) + Brainstorm (proposed)
-- Lab 02: `docs/DEBATE.md` (Brand · UX · Devil) → `docs/DECISIONS.md` D1–D9 · แก้ PROFILE: Headline ใหม่ · เพิ่ม `## Tagline` · กติกาเสียงใน Tone (2026-09-25)
+- Lab 02: `docs/DEBATE.md` (Brand · UX · Devil) → `docs/DECISIONS.md` D1–D9 (รันซ้ำแบบ Agent Teams 2 รอบ — nav คำไทยตรง ๆ · Hero Pool เป็น proof) · แก้ PROFILE: Headline ใหม่ · เพิ่ม `## Tagline` · กติกาเสียงใน Tone (2026-09-25)
+- L2: `parseProfile()` อ่านทุกบรรทัด · รองรับ `## Tagline` · `bioParagraphs` แสดงบน Home/About · เทสต์ `tests/profile.test.ts` · เพิ่ม `## Hero Pool` (PL · LS · Slark · Spectre · Razor) ใน PROFILE
 
 ## In progress
 
@@ -22,17 +23,16 @@ Updated by: Claude
 
 ## Blocked
 
-- Lab 04 รอเกณฑ์พร้อม Frontend (DECISIONS) — L2 · L3 · L4 ใน OPEN_LOOPS
+- Lab 04 รอเกณฑ์พร้อม Frontend (DECISIONS) — L3 · L4 ใน OPEN_LOOPS
 
 ## Next actions
 
-1. L2 — แก้ parser `profile.ts` ให้อ่านทุกบรรทัด + รองรับ `## Tagline`
-2. L3 / L4 — เจ้าของเติม PROFILE (Hero Pool · ช่องทางติดต่อ · Bio มุม B) + ตอบคำถาม privacy
-3. Lab 03 Issues → Lab 04 UI ตาม D3–D8
+1. L3 / L4 — เจ้าของเติม PROFILE (เหตุผล Hero Pool · ช่องทางติดต่อ · Bio มุม B) + ตอบคำถาม privacy
+2. Lab 03 Issues → Lab 04 UI ตาม D3–D8
 
 ## Files changed in latest session
 
-- `docs/DEBATE.md` · `docs/DECISIONS.md` · `docs/PROFILE.md` · `docs/STATUS.md` · `docs/OPEN_LOOPS.md`
+- `src/lib/profile.ts` · `src/pages/index.astro` · `src/pages/about.astro` · `tests/profile.test.ts` · `docs/PROFILE.md` · `docs/STATUS.md` · `docs/OPEN_LOOPS.md`
 
 ## Notes
 
