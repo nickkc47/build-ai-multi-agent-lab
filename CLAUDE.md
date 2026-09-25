@@ -1,3 +1,9 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+คำสั่ง build/test · สถาปัตยกรรมโค้ด · quirks ของเทสต์ อยู่ใน `AGENTS.md` (import ด้านล่าง) — แก้ที่นั่นที่เดียว อย่าคัดลอกมาไฟล์นี้
+
 @AGENTS.md
 
 # Claude Code — seed คอร์ส (อย่าลบตอน /init)
