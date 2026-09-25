@@ -36,7 +36,7 @@ Updated by: OpenCode
 ## Files changed in latest session
 
 - `src/lib/db.ts` · `src/lib/api.ts` (new) · `src/pages/api/{contact,guestbook}.ts`
-- `docs/be-fe-integration-check.md` (Claude เขียน · call ข้าม harness) · `docs/STATUS.md` · `docs/OPEN_LOOPS.md`
+- `docs/be-fe-integration-check.md` (Claude เขียน · call ข้าม harness) · `docs/handoffs/05-opencode-to-claude.md` (ส่งคืน Claude) · `docs/STATUS.md` · `docs/OPEN_LOOPS.md`
 
 ## Notes
 
