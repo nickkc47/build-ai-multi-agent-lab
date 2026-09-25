@@ -45,3 +45,22 @@ v1 จึงเล็กลง: Home + About มุม B + Interests (Hero Pool)
 - [ ] เจ้าของยืนยันช่องทางติดต่อ: อีเมลที่ใช้นามแฝง หรือ "ฟอร์มอย่างเดียว" · ลบบรรทัด Contact ที่ว่าง/ไม่เปิดเผยออกจาก PROFILE (D7)
 - [ ] เจ้าของตอบคำถาม privacy ข้อ 1–2 ใน DEBATE › Devil's Advocate (D9)
 - [ ] Bio เวอร์ชันเว็บมุม B อยู่ใน PROFILE (D9) — จากนั้น frontend ทำตาม D3–D8 และ `npm test` ต้องเขียว
+
+## Lab 03 — Issues จาก Decisions
+
+| Issue # | Title | มาจาก Decision | สร้างผ่าน | ปิดโดย |
+|---|---|---|---|---|
+| [#21](https://github.com/nickkc47/build-ai-multi-agent-lab/issues/21) | Home hero: headline + tagline · รวม Playstyle · ไม่มี Rank Journey | D1 · D6 · D8 | GitHub MCP | Lab 04 |
+| [#22](https://github.com/nickkc47/build-ai-multi-agent-lab/issues/22) | Nav 4 ลิงก์ภาษาไทย + ธีม + CTA ท้ายทุกหน้า | D3 · D4 | GitHub MCP | Lab 04 |
+| [#23](https://github.com/nickkc47/build-ai-multi-agent-lab/issues/23) | หน้า Interests: Hero Pool เป็น proof | D8 · D4 | GitHub MCP | Lab 04 (รอ L3) |
+| [#24](https://github.com/nickkc47/build-ai-multi-agent-lab/issues/24) | Contact form: ฟอร์มเดิม · microcopy ไทย · error ภาษาคน | D7 | GitHub MCP | Lab 04 (UI) · Lab 05 (API) |
+| [#25](https://github.com/nickkc47/build-ai-multi-agent-lab/issues/25) | About มุม B + privacy guard | D9 · D2 | GitHub MCP | Lab 04 (รอ L3 · L4) |
+| [#26](https://github.com/nickkc47/build-ai-multi-agent-lab/issues/26) | Guestbook ไม่เปิดใน v1 · ตัดสินเรื่อง nav | D5 | `gh` CLI | Lab 04 · Lab 05 |
+
+## Lab 03 — MCP vs gh
+
+- **ความเร็ว:** MCP สร้าง 5 issue ขนานกันในรอบเดียวจากในเซสชัน Claude โดยไม่ต้องเขียนไฟล์ body · `gh` ต้องเขียน body ลงไฟล์ก่อน (`--body-file`) แล้วรันทีละใบ แต่เร็วกว่าเมื่อคนสร้างเองใบเดียว
+- **สิทธิ์:** MCP ใช้ `GITHUB_PERSONAL_ACCESS_TOKEN` (fine-grained · repo เดียว) ผ่าน `.mcp.json` · `gh` ใช้ OAuth token จาก `gh auth login` ใน keyring ซึ่งสิทธิ์กว้างกว่า — ทั้งคู่ต้องตรวจว่าชี้ repo ของเรา (`get_me` / `gh repo view`) ไม่ใช่ Onto-IQ
+- **Audit trail:** ทั้งสองทางขึ้นเป็นผู้ใช้เดียวกันบน GitHub แยกไม่ออกจากหน้าเว็บ · ฝั่ง MCP มี tool call + body เต็มอยู่ใน transcript ของ Claude · ฝั่ง `gh` มีคำสั่งใน shell history และไฟล์ body — จึงบันทึกตารางด้านบนว่าใบไหนมาจากทางไหน
+- **ข้อผิดพลาดที่เจอ:** ไม่มี 401 ในรอบนี้ · ความเสี่ยงหลักของ MCP คือ agent สร้างซ้ำได้ง่าย (ต้อง `list` ก่อน — repo มี course issues #1–20 อยู่แล้ว) · `gh` ต้องระวัง quoting ภาษาไทย/markdown ใน PowerShell จึงใช้ `--body-file` แทน `--body`
+- **เมื่อไหร่ใช้อะไร:** MCP เหมาะกับงานที่ agent ต้องอ่านเอกสารแล้วสร้าง/อัปเดตหลายใบต่อเนื่อง (plan → issues) · `gh` เหมาะกับงานที่คนสั่งเองครั้งเดียว, script (`create-course-issues.mjs`), CI หรือเมื่อ MCP ใช้ไม่ได้ — และใช้ยืนยันผลหลัง MCP (`gh issue list`)
