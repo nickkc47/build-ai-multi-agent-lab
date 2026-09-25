@@ -163,3 +163,18 @@ export function insertGuestbook(input: GuestbookInput): GuestbookEntry {
   if (!row) throw new Error('guestbook insert returned no row');
   return row;
 }
+
+/**
+ * Moderation step (L6): approve one entry so GET /api/guestbook may return it.
+ * Internal only — exposed through scripts/guestbook-approve.mjs, never a route.
+ * Returns null when the id does not exist.
+ */
+export function approveGuestbook(id: number): GuestbookEntry | null {
+  const row = getDb()
+    .prepare(
+      `UPDATE guestbook SET status = 'approved' WHERE id = ?
+       RETURNING id, name, message, status, created_at`
+    )
+    .get(id) as GuestbookEntry | undefined;
+  return row ?? null;
+}
