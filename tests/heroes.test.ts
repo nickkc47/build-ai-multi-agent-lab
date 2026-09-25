@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { HEROES, META, heroSlug, findHero } from '../src/data/heroes';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { HEROES, META, heroSlug, findHero, heroImage } from '../src/data/heroes';
 import { loadProfile } from '../src/lib/profile';
 
 describe('hero guide data', () => {
@@ -34,5 +36,13 @@ describe('hero guide data', () => {
     const dates = META.map((m) => m.date);
     expect([...dates].sort().reverse()).toEqual(dates);
     for (const m of META) expect(m.picks.length, m.patch).toBeGreaterThan(0);
+  });
+
+  it('every hero has a portrait in public/', () => {
+    for (const h of HEROES) {
+      const src = heroImage(h.slug);
+      expect(src.startsWith('/img/heroes/'), h.slug).toBe(true);
+      expect(existsSync(join(process.cwd(), 'public', src)), src).toBe(true);
+    }
   });
 });
