@@ -14,7 +14,7 @@ const profile = loadProfile();
 
   {META.map((m, i) => (
     <section class="panel" aria-labelledby={`patch-${i}`}>
-      <h2 id={`patch-${i}`}>แพตช์ {m.patch}{i === 0 && <span class="badge">ปัจจุบัน</span>}</h2>
+      <h2 id={`patch-${i}`}>แพตช์ {m.patch}{i === 0 && <><span class="sr-only"> · </span><span class="badge">ปัจจุบัน</span></>}</h2>
       <p class="date">{m.date}</p>
       <p>{m.summary}</p>
       <ol class="picks">
@@ -31,6 +31,8 @@ const profile = loadProfile();
     </section>
   ))}
 
+  <p class="source">แหล่งข้อมูล: <a href="https://www.dota2.com/patches">patch notes ทางการ</a> · อัตราชนะและความนิยมจาก OpenDota · meta report สาธารณะ</p>
+
   <ContactCta />
 </BaseLayout>
 
@@ -39,6 +41,7 @@ const profile = loadProfile();
     display: inline-block; margin-left: 0.6rem; padding: 0 0.5rem; font-size: 0.8rem; vertical-align: middle;
     border: 1px solid var(--color-accent); color: var(--color-accent); border-radius: var(--radius);
   }
+  .source { font-size: 0.875rem; }
   .date { font-size: 0.875rem; margin-top: 0; }
   .picks { padding-left: 1.25rem; margin: 0; }
   .picks li { padding: 0.35rem 0; }

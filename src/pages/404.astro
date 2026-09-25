@@ -1,0 +1,15 @@
+---
+export const prerender = false;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadProfile } from '../lib/profile';
+const profile = loadProfile();
+Astro.response.status = 404;
+---
+<BaseLayout title={`ไม่พบหน้า · ${profile.name}`} description={profile.headline}>
+  <p class="eyebrow">404</p>
+  <h1>ไม่พบหน้านี้</h1>
+  <section class="panel">
+    <p>หน้านี้อาจถูกย้ายหรือไม่เคยมีอยู่</p>
+    <p><a href="/">กลับหน้าแรก</a> · <a href="/interests">ดูฮีโร่ที่ถนัด</a></p>
+  </section>
+</BaseLayout>
