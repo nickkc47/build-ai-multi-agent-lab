@@ -106,7 +106,8 @@ node scripts/create-course-issues.mjs   # สร้าง course issues (ต้�
 - `src/lib/db.ts` — `getDb()` สร้าง `$DATA_DIR/site.sqlite` (ค่าเริ่ม `./data` — gitignore แล้ว) + ตาราง `contact_messages`, `guestbook` · `insertContact` / `listGuestbook` / `insertGuestbook` เป็น stub โยน `NOT_IMPLEMENTED` จน Lab 05
 - `src/pages/api/{contact,guestbook,interests}.ts` — error ขึ้นต้น `NOT_IMPLEMENTED` → **501** · validation → 400 · อื่น ๆ → 500
 - Env: `.env` จาก `.env.example` — `STUDENT_SLUG`, `SITE_URL` (ใช้เป็น `site` ใน astro config), `PORT`, `DATA_DIR`, `GITHUB_PERSONAL_ACCESS_TOKEN` (MCP github อ่านผ่าน `opencode.json` / `.mcp.json`)
-- Local-only (มี `.example` เป็นต้นแบบ): `.env` · `.mcp.json` · `opencode.json` · `.claude/settings.json`
+- Local-only (gitignore · มี `.example` เป็นต้นแบบ): `.env` · `.mcp.json` · `.claude/settings.local.json`
+- Commit ได้ (project scope ของทีม · สร้างจาก `.example` ใน Lab 00): `opencode.json` · `.claude/settings.json`
 
 ## การทดสอบ (quirks)
 

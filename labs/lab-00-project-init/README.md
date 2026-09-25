@@ -62,7 +62,7 @@ powershell -ExecutionPolicy Bypass -File "$env:TEMP\setup-windows.ps1"
 | Git · gh · Node 22 LTS + npm | winget | `C:\Program Files\...` |
 | Bun | installer ทางการ | `%USERPROFILE%\.bun\bin` |
 | Claude Code | native installer (**ไม่ผ่าน npm**) | `%USERPROFILE%\.local\bin\claude.exe` |
-| OpenCode | GitHub Releases (native `.exe`) | `%LOCALAPPDATA%\Programs\opencode` |
+| OpenCode v2 | npm `@opencode/cli` (ช่องทางทางการของ v2 บน Windows) | `%APPDATA%\npm\opencode` |
 | VS Code | winget | `%LOCALAPPDATA%\Programs\Microsoft VS Code` |
 
 จบแล้วตรวจ:
@@ -79,7 +79,7 @@ claude               # เปิดครั้งแรก จะพาล็�
 opencode auth login  # เลือก provider
 ```
 
-**ยังไม่ผ่านถ้า…** คำสั่งไหนยัง `not found` — ปิดแล้วเปิด Windows Terminal ใหม่ แล้ว**รันสคริปต์ซ้ำ**: มันจะเติม PATH ที่หาย · ถอด npm shim `.ps1`/`.cmd` เดิมแล้วลง native `.exe` แทน · ติดตั้งทับคำสั่งที่เรียกแล้วพัง · อัป Node ถ้าเก่ากว่า 22
+**ยังไม่ผ่านถ้า…** คำสั่งไหนยัง `not found` — ปิดแล้วเปิด Windows Terminal ใหม่ แล้ว**รันสคริปต์ซ้ำ**: มันจะเติม PATH ที่หาย · ถอด npm shim ของ Claude Code / `opencode-ai` (v1) แล้วลงตัวที่ถูกแทน · ติดตั้งทับคำสั่งที่เรียกแล้วพัง · อัป Node ถ้าเก่ากว่า 22
 
 ---
 
@@ -318,8 +318,10 @@ Test-Path .\.opencode
 Smoke:
 
 ```powershell
-opencode run "Reply with one sentence: confirm native agents (@backend) are available. Do not edit files."
+opencode run --agent backend "Reply with one sentence: which agent are you and what do you own? Do not edit files."
 ```
+
+`backend` เป็น agent แบบ `mode: primary` — เรียกด้วย `--agent backend` (CLI) หรือกด **Tab** สลับใน TUI · ตรวจรายชื่อที่โหลดได้ด้วย `opencode debug agents`
 
 `opencode --version` ต้องขึ้น 2.x — ถ้าขึ้น 1.x ให้ `npm install -g @opencode/cli` แล้วเปิด terminal ใหม่
 
