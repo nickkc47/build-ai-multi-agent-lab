@@ -1,0 +1,10 @@
+---
+// D4: every page (except Contact) ends with the same call to action.
+import { loadProfile } from '../lib/profile';
+const { tagline } = loadProfile();
+---
+<section class="panel" aria-labelledby="cta-title">
+  <h2 id="cta-title">ต้องการคนปิดเกม</h2>
+  {tagline && <p class="tagline">{tagline}</p>}
+  <p><a class="btn" href="/contact">ส่งสัญญาณมา</a></p>
+</section>

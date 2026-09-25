@@ -1,16 +1,42 @@
 ---
 export const prerender = false;
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCta from '../components/ContactCta.astro';
 import { loadProfile } from '../lib/profile';
 const profile = loadProfile();
+// D8: the hero pool is the proof. Reasons appear only once the owner writes them in PROFILE.
 ---
-<BaseLayout title={`Interests · ${profile.name}`}>
-  <section class="card">
-    <h1>Interests</h1>
-    <ul>
+<BaseLayout title={`ความสนใจ · ${profile.name}`} description={profile.headline}>
+  <p class="eyebrow">ความสนใจ</p>
+  <h1>สนามที่เล่น</h1>
+
+  <section class="panel" aria-labelledby="interests-title">
+    <h2 id="interests-title">สิ่งที่สนใจ</h2>
+    <ul class="plain">
       {profile.interests.map((item) => <li>{item}</li>)}
     </ul>
-    <p>อัปเดตรายการสิ่งที่สนใจเร็ว ๆ นี้</p>
   </section>
+
+  {profile.heroPool.length > 0 && (
+    <section class="panel" aria-labelledby="pool-title">
+      <h2 id="pool-title">ฮีโร่ที่ถนัด</h2>
+      <ul class="pool">
+        {profile.heroPool.map((hero) => (
+          <li>
+            <span class="hero-name">{hero.name}</span>
+            {hero.reason && <span class="hero-reason">{hero.reason}</span>}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <ContactCta />
 </BaseLayout>
 
+<style>
+  .pool { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .pool li { border: 1px solid var(--color-border); border-radius: var(--radius); padding: 0.6rem 0.8rem; }
+  .hero-name { display: block; color: var(--color-text); font-weight: 700; }
+  .hero-reason { display: block; font-size: 0.9rem; }
+</style>

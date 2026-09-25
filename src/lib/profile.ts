@@ -13,23 +13,36 @@ export type Profile = {
   bioParagraphs: string[];
   audience: string;
   interests: string[];
+  heroPool: Hero[];
 };
+
+export type Hero = { name: string; reason: string };
 
 /**
  * FALLBACK renders publicly when docs/PROFILE.md is missing or a section is
  * empty — keep it course-free (no lab references); learner hints belong in
  * comments and docs, not in rendered fallback text.
  */
+const FALLBACK_BIO = 'This personal site is still being built — content is coming soon.';
 const FALLBACK: Profile = {
   name: 'Your Name',
   headline: 'Personal branding site',
   tagline: '',
-  bio: 'This personal site is still being built — content is coming soon.',
+  bio: FALLBACK_BIO,
+  bioParagraphs: [FALLBACK_BIO],
   audience: 'Hiring managers / peers / community',
   interests: ['AI agents', 'Web', 'Teaching'],
-  bioParagraphs: [],
+  heroPool: [],
 };
-FALLBACK.bioParagraphs = [FALLBACK.bio];
+
+/** List items of a section: drops `>` note lines, bullets, and leading emoji (D3: no emoji on the web). */
+function listItems(section: string): string[] {
+  return section
+    .split('\n')
+    .filter((l) => /^\s*[-*]\s+/.test(l))
+    .map((l) => l.replace(/^\s*[-*]\s+/, '').replace(/^[\p{Extended_Pictographic}\u{FE0F}\u{200D}\s]+/u, '').trim())
+    .filter(Boolean);
+}
 
 function profilePath(): string {
   const candidates = [
@@ -56,10 +69,12 @@ export function parseProfile(text: string): Profile {
     const m = raw.match(new RegExp(String.raw`^##[ \t]*${label}[ \t]*\n([\s\S]*?)(?=^##[ \t]|(?![\s\S]))`, 'm'));
     return (m?.[1] || '').trim();
   };
-  const interests = get('Interests')
-    .split('\n')
-    .map((l) => l.replace(/^[-*]\s*/, '').trim())
-    .filter(Boolean);
+  const interests = listItems(get('Interests'));
+  // "Name — reason" or just "Name"; the reason is written by the owner, never generated.
+  const heroPool = listItems(get('Hero Pool')).map((item) => {
+    const [name, ...rest] = item.split(/\s+[—–-]\s+/);
+    return { name: name.trim(), reason: rest.join(' — ').trim() };
+  });
   const bio = get('Bio') || FALLBACK.bio;
   return {
     name: get('Name') || FALLBACK.name,
@@ -69,5 +84,6 @@ export function parseProfile(text: string): Profile {
     bioParagraphs: bio.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean),
     audience: get('Audience') || FALLBACK.audience,
     interests: interests.length ? interests : FALLBACK.interests,
+    heroPool,
   };
 }
