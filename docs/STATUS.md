@@ -3,12 +3,12 @@
 > อ่านทุก session · **สั้น** · single-writer ต่อรอบ  
 > ดู [`COURSE.md`](../COURSE.md) ชั้น State (Hot)
 
-Last updated: 2026-09-25 16:50 +07:00  
+Last updated: 2026-09-25 16:55 +07:00  
 Updated by: Claude
 
 ## Current goal
 
-- Lab 06 — Playwright MCP + a11y (`docs/QA.md`)
+- Lab 06 เสร็จ (รอ merge PR) → Lab 07 cross-model review
 
 ## Done
 
@@ -24,10 +24,11 @@ Updated by: Claude
 - L6/L9: backend hardening ตาม handoff `05b-claude-to-opencode.md` — rate limit 5/10min ต่อ IP (contact + guestbook คนละ bucket) → **429** · body ≤ 8 KB → **413** · 201 ตอบน้อยลง (contact `{id, created_at}` · guestbook + `status`) ตาม B2 · `/api/interests` try/catch → `errorResponse` · approve step: `approveGuestbook` + `scripts/guestbook-approve.mjs` (list / `<id>`) · **ตัดสิน:** guestbook POST ยังรับ (201 `pending`) เพราะ moderation ครบแล้ว (blocklist + pending + rate limit + approve) · `npm test` 25/25 · `test:labs` 2/2 · build · manual curl ครบ (2026-09-25)
 - L10: ฟอร์ม Contact แยกข้อความ 413 ("ข้อความยาวเกินไป…") / 429 ("ส่งข้อความถี่เกินไป…") · ข้อความยังอยู่ในฟอร์ม · ตรวจในเบราว์เซอร์ (`RATE_LIMIT_MAX=2`) 413/201/429 ครบ · review PR #32 (Claude) ไม่มีข้อบล็อก (2026-09-25)
 - PR #31 (05b · รีวิวอิสระโดย OpenCode `docs/review-pr31.md` APPROVE) · #32 (hardening · รีวิวโดย Claude) · #33 (L10) merge เข้า `main` แล้ว · `main`: `npm test` 25/25 · `test:labs` 2/2 · build (2026-09-25)
+- Lab 06: Playwright MCP E2E 13 ขั้นผ่านหมด · `docs/QA.md` + screenshot 6 ใบ · a11y debate (Advocate/Pragmatist) → แก้ P0×2 + P1 ในฟอร์ม Contact (L11 ปิด) · `npm test` 25/25 · `test:labs` 2/2 · `test:e2e` 2/2 · build (2026-09-25)
 
 ## In progress
 
-- เก็บ docs ตามรีวิว #31 (branch `docs/post-merge-cleanup`)
+- PR Lab 06 (branch `lab-06-qa`) รอ review/merge
 
 ## Blocked
 
@@ -35,12 +36,13 @@ Updated by: Claude
 
 ## Next actions
 
-1. Lab 06 Playwright — รัน server ด้วย `RATE_LIMIT_MAX=0` · a11y รวม L11
-2. เจ้าของเปิดฟอร์ม Guestbook เมื่อพร้อม (D5 — moderation ครบแล้ว เหลือ UI)
+1. Merge PR Lab 06 → Lab 07 cross-model review
+2. Lab 08: a11y audit บน URL จริง (L13)
+3. เจ้าของเปิดฟอร์ม Guestbook เมื่อพร้อม (D5 — moderation ครบแล้ว เหลือ UI)
 
 ## Files changed in latest session
 
-- `docs/DECISIONS.md` (ติ๊ก checklist Lab 04) · `docs/OPEN_LOOPS.md` (ลบแถว L3 ซ้ำ · เพิ่ม L11) · `docs/STATUS.md`
+- `docs/QA.md` (new) · `docs/screenshots/*.png` (new · 6) · `src/pages/contact.astro` · `docs/STATUS.md` · `docs/OPEN_LOOPS.md`
 
 ## Notes
 

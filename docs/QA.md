@@ -53,8 +53,24 @@ Input: the E2E table above plus `src/pages/contact.astro` and `src/layouts/BaseL
 
 | Priority | Item | File | Est. |
 |---|---|---|---|
-| **P0** | A1 — status names the fields that are wrong (e.g. "ตรวจช่อง: อีเมล") instead of one message for all 3 | `src/pages/contact.astro` | 10 min |
-| **P0** | A2 / L11 — remove `aria-describedby="status"` from the 3 fields (the live region already announces it) | `src/pages/contact.astro` | 5 min |
-| **P1** | A4 — one line in the form microcopy: "กรอกครบทุกช่อง" | `src/pages/contact.astro` | 5 min |
+| **P0 ✅** | A1 — status names the fields that are wrong (e.g. "ตรวจช่อง: อีเมล") instead of one message for all 3 | `src/pages/contact.astro` | 10 min |
+| **P0 ✅** | A2 / L11 — remove `aria-describedby="status"` from the 3 fields (the live region already announces it) | `src/pages/contact.astro` | 5 min |
+| **P1 ✅** | A4 — one line in the form microcopy: "กรอกครบทุกช่อง" | `src/pages/contact.astro` | 5 min |
 | **P2** | A3 — nav link padding to about 44px tall on mobile · check the underline on `aria-current` | `src/layouts/BaseLayout.astro` | 15 min |
 | **P2** | axe / Lighthouse + zoom 200% + reduced motion on the real URL | Lab 08 | — |
+
+## Fixes after the debate (P0 ×2 + P1 · owner approved)
+
+`src/pages/contact.astro` · re-tested in the browser with Playwright MCP after the edit
+
+| Case | Status says | Focus | `aria-invalid` |
+|---|---|---|---|
+| All fields empty | "ตรวจช่อง: ชื่อ · อีเมล · ข้อความ" | `#name` | all 3 |
+| Bad email only | "ตรวจช่อง: อีเมล (รูปแบบไม่ถูกต้อง)" | `#email` | email |
+| Name + message are spaces only | "ตรวจช่อง: ชื่อ · ข้อความ" | `#name` | name, message |
+| Valid data | "ได้รับแล้ว จะตอบกลับทางอีเมลที่ให้ไว้" (201) | — | none |
+
+- A2: `aria-describedby` on the fields = 0 (the live region `role="status"` still announces as before)
+- A4: "กรอกครบทุกช่อง" line under the microcopy · muted colour 8.2:1
+- `npm test` 25/25 · `test:labs` 2/2 · `test:e2e` 2/2 · build pass
+- Evidence: `screenshots/06-contact-field-error.png`
